@@ -56,6 +56,9 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   // Cookie parser — required for ctx.req.cookies to work in tRPC procedures
   app.use(cookieParser());
+  // Health check for Railway/load balancers
+  app.get("/health", (_req, res) => res.json({ status: "ok" }));
+
   // OAuth callback under /api/oauth/callback
   registerOAuthRoutes(app);
 
@@ -101,8 +104,8 @@ async function startServer() {
     console.log(`Port ${preferredPort} is busy, using port ${port} instead`);
   }
 
-  server.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}/`);
+  server.listen(port, "0.0.0.0", () => {
+    console.log(`Server running on http://0.0.0.0:${port}/`);
     // SMS sender number registration diagnostic
     getSenderNumberStatus().then((s) => {
       if (!s) {
