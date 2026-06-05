@@ -1,0 +1,10 @@
+import mysql from 'mysql2/promise';
+const conn = await mysql.createConnection(process.env.DATABASE_URL);
+const [rows] = await conn.execute("SHOW COLUMNS FROM estimate_line_items");
+const cols = rows.map(r => r.Field);
+console.log("Columns:", cols.join(", "));
+const hasImageUrl = cols.includes('imageUrl');
+const hasProductUrl = cols.includes('productUrl');
+const hasProductSource = cols.includes('productSource');
+console.log("imageUrl:", hasImageUrl, "productUrl:", hasProductUrl, "productSource:", hasProductSource);
+await conn.end();

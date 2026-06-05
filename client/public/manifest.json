@@ -1,0 +1,21 @@
+{
+  "name": "Kitchens Plus Upstate CRM",
+  "short_name": "KP CRM",
+  "description": "CRM & Project Management for Kitchens Plus Upstate",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#1A1B17",
+  "theme_color": "#BF9A3B",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "en-US",
+  "scope": "/"
+}

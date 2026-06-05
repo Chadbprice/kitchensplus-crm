@@ -1,0 +1,244 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ── Kitchens Plus Upstate Brand Variables ─────────────────────────── */
+:root {
+  /* Kitchens Plus palette */
+  --kp-charcoal:       #2E2F2A;
+  --kp-charcoal-light: #3A3B35;
+  --kp-charcoal-dark:  #1E1F1B;
+  --kp-cream:          #F5EDE7;
+  --kp-cream-dark:     #EFE5DE;
+  --kp-gold:           #BF9A3B;
+  --kp-gold-light:     #D4AF55;
+  --kp-gold-dark:      #9E7D28;
+  --kp-olive:          #31361D;
+  --kp-white:          #FDFAF7;
+  --kp-muted:          #8A8B82;
+
+  /* Semantic tokens — dark luxury theme */
+  --radius: 0.5rem;
+  --background:        oklch(17.5% 0.01 85);
+  --foreground:        oklch(94% 0.02 80);
+  --card:              oklch(20% 0.01 85);
+  --card-foreground:   oklch(94% 0.02 80);
+  --popover:           oklch(20% 0.01 85);
+  --popover-foreground: oklch(94% 0.02 80);
+  --primary:           oklch(68% 0.10 75);
+  --primary-foreground: oklch(17% 0.01 85);
+  --secondary:         oklch(25% 0.01 85);
+  --secondary-foreground: oklch(90% 0.02 80);
+  --muted:             oklch(25% 0.01 85);
+  --muted-foreground:  oklch(60% 0.01 85);
+  --accent:            oklch(68% 0.10 75);
+  --accent-foreground: oklch(17% 0.01 85);
+  --destructive:       oklch(55% 0.20 25);
+  --destructive-foreground: oklch(97% 0 0);
+  --border:            oklch(28% 0.01 85);
+  --input:             oklch(28% 0.01 85);
+  --ring:              oklch(68% 0.10 75);
+  --sidebar:           oklch(16% 0.01 85);
+  --sidebar-foreground: oklch(90% 0.02 80);
+  --sidebar-primary:   oklch(68% 0.10 75);
+  --sidebar-primary-foreground: oklch(17% 0.01 85);
+  --sidebar-accent:    oklch(22% 0.01 85);
+  --sidebar-accent-foreground: oklch(90% 0.02 80);
+  --sidebar-border:    oklch(25% 0.01 85);
+  --sidebar-ring:      oklch(68% 0.10 75);
+  --chart-1: oklch(68% 0.10 75);
+  --chart-2: oklch(60% 0.12 160);
+  --chart-3: oklch(65% 0.15 200);
+  --chart-4: oklch(70% 0.12 50);
+  --chart-5: oklch(55% 0.18 300);
+}
+
+/* Dark mode inherits same dark luxury theme (already dark by default) */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Poppins', system-ui, sans-serif;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  /* Gold button */
+  .btn-gold {
+    background: linear-gradient(135deg, var(--kp-gold-dark), var(--kp-gold));
+    color: var(--kp-charcoal-dark);
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.03em;
+    border-radius: 9999px;
+    transition: all 0.2s;
+  }
+  .btn-gold:hover {
+    background: linear-gradient(135deg, var(--kp-gold), var(--kp-gold-light));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(191, 154, 59, 0.35);
+  }
+  .gold-text { color: var(--kp-gold); }
+  .gold-border { border-color: var(--kp-gold); }
+  .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+  /* Status badges */
+  .status-new           { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+  .status-active        { background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
+  .status-completed     { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
+  .status-on_hold       { background: rgba(234,179,8,0.15); color: #fde047; border: 1px solid rgba(234,179,8,0.3); }
+  .status-cancelled     { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+  .status-planning      { background: rgba(168,85,247,0.15); color: #d8b4fe; border: 1px solid rgba(168,85,247,0.3); }
+  .status-won           { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
+  .status-lost          { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+  .status-quoted        { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.3); }
+  .status-visited       { background: rgba(99,102,241,0.15); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--kp-charcoal-dark); }
+  ::-webkit-scrollbar-thumb { background: var(--kp-charcoal-light); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--kp-gold-dark); }
+
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* 16px - mobile padding */
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem; /* 32px - desktop padding */
+      padding-right: 2rem;
+      max-width: 1280px; /* Standard content width */
+    }
+  }
+}
+/*
+ * Google Maps Places autocomplete dropdown fix.
+ * The .pac-container is injected directly into <body> by the Maps JS API.
+ * Radix UI Dialog uses a focus trap that intercepts pointer events on elements
+ * outside its portal — which includes the pac-container. We must:
+ *   1. Give pac-container a z-index well above the dialog (z-50 = 50).
+ *   2. Ensure pointer-events are enabled so clicks reach the suggestion items.
+ */
+.pac-container {
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+.pac-item,
+.pac-item-query {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* ── iPhone Safe Area Utilities ───────────────────────────────────────── */
+/* Usage: pb-safe, pt-safe, pl-safe, pr-safe, px-safe, py-safe */
+.pt-safe  { padding-top:    env(safe-area-inset-top, 0px); }
+.pb-safe  { padding-bottom: env(safe-area-inset-bottom, 0px); }
+.pl-safe  { padding-left:   env(safe-area-inset-left, 0px); }
+.pr-safe  { padding-right:  env(safe-area-inset-right, 0px); }
+.px-safe  { padding-left:   env(safe-area-inset-left, 0px); padding-right: env(safe-area-inset-right, 0px); }
+.py-safe  { padding-top:    env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+/* Safe-area-aware bottom padding for fixed bottom bars */
+.pb-safe-bottom {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+}
+
+/* Ensure fixed bottom elements clear the home indicator */
+.bottom-safe {
+  bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Pull-to-refresh container — prevents overscroll bounce from showing white */
+html, body {
+  overscroll-behavior-y: contain;
+}
+
+/* Prevent horizontal scroll on mobile */
+body {
+  overflow-x: hidden;
+}
+
+/* ── Mobile input auto-zoom prevention ───────────────────────────────────────
+   iOS zooms in when an input has font-size < 16px. Force 16px on mobile so
+   the viewport never jumps. Desktop keeps the smaller design-system size. */
+@media (max-width: 767px) {
+  input, textarea, select {
+    font-size: max(16px, 1em) !important;
+  }
+}

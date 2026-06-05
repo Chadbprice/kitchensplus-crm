@@ -1,0 +1,34 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1774572478912,
+      "tag": "0000_aspiring_blue_marvel",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1774572696744,
+      "tag": "0001_striped_legion",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1774576502117,
+      "tag": "0002_lively_raza",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1774989993315,
+      "tag": "0003_first_agent_brand",
+      "breakpoints": true
+    }
+  ]
+}

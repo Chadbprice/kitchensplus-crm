@@ -1,0 +1,2 @@
+ALTER TABLE `documents` MODIFY COLUMN `docType` enum('estimate','contract','permit','photo','drawing','invoice','warranty','compliance','inspiration','other') NOT NULL;--> statement-breakpoint
+ALTER TABLE `documents` ADD `uploadedByClient` boolean DEFAULT false;
