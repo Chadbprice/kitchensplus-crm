@@ -68,15 +68,18 @@ async function startServer() {
     app.get("/api/dev/login", async (req, res) => {
       const openId = (req.query.openId as string) || "dev-owner";
       const name = (req.query.name as string) || "Dev Owner";
-      try {
-        await db.upsertUser({ openId, name, email: "dev@localhost", loginMethod: "dev", lastSignedIn: new Date(), role: "admin" });
-      } catch { /* DB may not be configured yet — session still works */ }
+      // Fire-and-forget DB upsert with a 3s timeout — never block the login response
+      const upsertWithTimeout = Promise.race([
+        db.upsertUser({ openId, name, email: "dev@localhost", loginMethod: "dev", lastSignedIn: new Date(), role: "admin" }),
+        new Promise<void>(resolve => setTimeout(resolve, 3000))
+      ]);
+      upsertWithTimeout.catch(() => {});
       const token = await sdk.createSessionToken(openId, { name, expiresInMs: ONE_YEAR_MS });
       const opts = getSessionCookieOptions(req);
       res.cookie(COOKIE_NAME, token, { ...opts, maxAge: ONE_YEAR_MS });
       res.redirect(302, "/");
     });
-    console.log("[Dev] Login bypass available at http://localhost:3000/api/dev/login");
+    console.log("[Dev] Login bypass available at /api/dev/login");
   }
   // Square payment webhook
   registerSquareWebhook(app);
