@@ -61,16 +61,14 @@ export default function Home() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col gap-3 w-full max-w-xs">
-          {import.meta.env.DEV && (
-            <Button
-              onClick={() => { window.location.href = "/api/dev/login"; }}
-              size="lg"
-              className="w-full h-12 text-sm font-semibold tracking-wide"
-              style={{ background: "#2563eb" }}
-            >
-              Dev Login (local only)
-            </Button>
-          )}
+          <Button
+            onClick={() => { window.location.href = "/api/dev/login"; }}
+            size="lg"
+            className="w-full h-12 text-sm font-semibold tracking-wide"
+            style={{ background: "#2563eb" }}
+          >
+            Owner Login (Testing)
+          </Button>
           <Button
             onClick={() => { window.location.href = getLoginUrl(); }}
             size="lg"

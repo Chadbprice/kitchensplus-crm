@@ -59,8 +59,9 @@ async function startServer() {
   // OAuth callback under /api/oauth/callback
   registerOAuthRoutes(app);
 
-  // Dev-only bypass: skip OAuth, mint a session directly
-  if (process.env.NODE_ENV !== "production") {
+  // Dev login bypass: skip OAuth, mint a session directly
+  // Enabled in development OR when ALLOW_DEV_LOGIN=true env var is set
+  if (process.env.NODE_ENV !== "production" || process.env.ALLOW_DEV_LOGIN === "true") {
     app.get("/api/dev/login", async (req, res) => {
       const openId = (req.query.openId as string) || "dev-owner";
       const name = (req.query.name as string) || "Dev Owner";
